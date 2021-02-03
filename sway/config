@@ -1,3 +1,11 @@
+# Startup dbus daemon (required by mako notification service)
+
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec /bin/bash $HOME/.config/tinactive.sh "0.8"
+
+# Disabling Xwayland completely
+
+xwayland disable
 
 # Variables section
 
@@ -7,7 +15,7 @@ set $menu wofi --show drun
 
 # Wallpaper
 
-output * bg $HOME/.config/sway/background.jpg fill
+output * bg $HOME/.config/sway/background.* fill
 
 # Keyboard
 
@@ -16,6 +24,9 @@ input type:keyboard {
 	xkb_options grp:alt_shift_toggle
 }
 
+input type:touchpad {
+	dwt disabled
+}
 # Layout independent key bindings
 
 bindsym --to-code {
@@ -111,8 +122,20 @@ mode "resize" {
 bindsym --to-code {
 	$mod+r mode "resize"
 }
+# Disabling titlebars completely
+#font pango:monospace 0
+titlebar_border_thickness 0                                                     
+titlebar_padding 0
+
+# Gaps
+gaps inner 5
+default_border pixel 2
+
+# Borders color
+client.focused #d65d0e #d65d0e #d65d0e #d65d0e 
 
 exec waybar
 exec mako
+
 
 include /etc/sway/config.d/*
