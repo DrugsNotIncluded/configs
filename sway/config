@@ -62,7 +62,7 @@ bindsym --to-code {
 }
 
 
-bindsym {
+bindsym --to-code {
 # Switch to workspace
 	$mod+1 workspace 1
 	$mod+2 workspace 2
@@ -119,9 +119,17 @@ mode "resize" {
 		Escape mode "default"
 	}
 }
+
 bindsym --to-code {
 	$mod+r mode "resize"
 }
+
+bindsym XF86MonBrightnessDown exec brillo -U 5
+bindsym XF86MonBrightnessUp exec brillo -A 5
+
+
+
+
 # Disabling titlebars completely
 #font pango:monospace 0
 titlebar_border_thickness 0                                                     
